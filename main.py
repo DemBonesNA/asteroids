@@ -32,9 +32,14 @@ def main():
             if item.collision(player):
                 print("Game over!")
                 sys.exit()
+        for item in asteroid:
+            for bullets in shot:
+                if bullets.collision(item):
+                    pygame.sprite.Sprite.kill(item)
+                    pygame.sprite.Sprite.kill(bullets)
         pygame.Surface.fill(screen, (0,0,0))
-        for items in drawable:
-            items.draw(screen)
+        for things in drawable:
+            things.draw(screen)
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
